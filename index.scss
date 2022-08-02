@@ -1,0 +1,475 @@
+// ------------------------------------------ //
+// ------------ VARIABLES/MIXINS ------------ //
+// ------------------------------------------ //
+$primary-gray: #888888; // for paragraphs
+$secondary-gray: #666666; // for quote text and footer text
+$primary-green: #00945f; // for lines, heading background, quote cite text
+$secondary-green: #759b24; // for single link
+$secondary-green-hover: #557510; // for single link
+$quote-green: #009e77;
+$primary-orange: #e97300;
+$secondary-orange: #c26100;
+$box-color: #ebf7f5;
+
+$base-font-size: 1.125rem; // 18px
+$base-line-height: 1.9375rem; // 31px
+$heading-font-size: 1.875rem; // 30px
+$quote-line-height: 1.8025rem; // 28.84px
+$footer-base-font-size: 0.6875rem; // 11px
+$footer-links-font-size: 0.75rem; // 12px
+$footer-line-height: 0.8125rem; // 13px
+$base-letter-space: -0.01rem; // headings, quote text
+
+// Used to match psd file, due to it not having line-height spacing at the top or bottom of text boxes
+@mixin adjust-line-height($property, $font-size, $line-height) {
+  #{$property}: calc((#{$line-height} - #{$font-size}) / -2);
+}
+
+// --------------------------------- //
+// ------------ GENERAL ------------ //
+// --------------------------------- //
+body {
+  font-size: $base-font-size; // 18px
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: $base-line-height; // 31px
+  box-sizing: border-box;
+  font-style: normal;
+
+  color: $primary-gray;
+}
+
+.container {
+  margin: 0 18px;
+}
+
+.logo-image {
+  display: block;
+  margin: 24px auto;
+  text-align: center;
+
+  width: 173px;
+  height: auto;
+}
+
+.hero {
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+
+  line-height: 0; // remove space below image
+
+  img {
+    height: 200px;
+    width: auto;
+  }
+
+  .hero__overlay {
+    display: none;
+  }
+}
+
+h2,
+h1 {
+  text-align: center;
+  font-size: $heading-font-size; // 30px
+  line-height: $base-line-height; // 31px
+  color: $primary-green;
+  letter-spacing: $base-letter-space;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 73px;
+    height: 2px;
+    background-color: $primary-green;
+    border: none;
+  }
+
+  &.investment__heading {
+    margin-top: 41px;
+  }
+
+  &.advantage__heading {
+    margin-top: 49px;
+  }
+
+  &.investment__heading::after {
+    margin: 13px auto 18px auto;
+  }
+
+  &.advantage__heading::after {
+    margin: 15px auto 26px auto;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: $primary-green;
+  margin-bottom: 17px;
+  letter-spacing: $base-letter-space;
+}
+
+p {
+  font-size: 1.125rem; // 18px
+  line-height: $base-line-height; // 31px
+  color: $primary-gray;
+
+  @include adjust-line-height(margin-top, $base-font-size, $base-line-height);
+}
+
+.advantage__grid {
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.advantage__grid-item {
+  margin-top: 22px;
+  padding-bottom: 26px;
+  border-bottom: solid 0.4px $secondary-gray;
+
+  &:first-child {
+    margin-top: 0px;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.advantage__loans-box {
+  background-color: $box-color;
+  margin-bottom: 32px;
+
+  h3 {
+    color: #ffffff;
+    background-color: $primary-green;
+    padding: 20px 22px 17px 23px;
+    text-align: center;
+    line-height: $base-line-height;
+    margin-bottom: 0;
+  }
+
+  p {
+    padding: 21px 14px 15px 9px;
+  }
+}
+
+.quotes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 70px 70px 70px;
+
+  text-align: center;
+  font-size: $base-font-size;
+  line-height: $quote-line-height; // 28.84px;
+  letter-spacing: $base-letter-space;
+
+  img {
+    margin: 0 auto 12px auto;
+    max-width: 180px;
+    max-height: 180px;
+  }
+
+  .quotes__item {
+    margin-bottom: 36px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .quotes__blockquote-container {
+    position: relative;
+
+    .quotes__quote-decor {
+      position: absolute;
+      top: -5px;
+      left: -9px;
+      width: 66px;
+      height: auto;
+    }
+  }
+
+  blockquote {
+    font-style: italic;
+    color: $secondary-gray;
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: $quote-green;
+
+    &:last-child {
+      @include adjust-line-height(
+        margin-bottom,
+        $base-font-size,
+        $quote-line-height
+      );
+    }
+  }
+}
+
+.button-container {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 51px;
+}
+
+.button {
+  display: inline-block;
+  padding: 9px 20px 12px 23px;
+  font-size: 1.5rem; // 24px
+  text-decoration: none;
+  margin: 0 auto;
+
+  background-color: $primary-orange;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $secondary-orange;
+  }
+}
+
+a {
+  color: $primary-gray;
+}
+
+.products-link {
+  display: inline-block;
+  color: $secondary-green;
+  text-decoration: none;
+  transition: text-decoration 0.4s ease, color 0.4s ease;
+
+  @include adjust-line-height(
+    margin-bottom,
+    $base-font-size,
+    $base-line-height
+  );
+
+  &:hover {
+    color: $secondary-green-hover;
+
+    img {
+      margin-left: 8px;
+    }
+  }
+
+  img {
+    margin-bottom: -4px;
+    margin-left: 0;
+    transition: margin 0.4s ease;
+  }
+}
+
+footer {
+  border-top: solid 1px $primary-green;
+  padding-top: 26px;
+  padding-bottom: 35px;
+
+  p {
+    font-size: $footer-base-font-size;
+    line-height: $footer-line-height;
+    margin-bottom: 22px;
+  }
+
+  .container {
+    margin: 0 19px 0 18px;
+    line-height: 1;
+  }
+
+  .footer__links--social-media {
+    display: flex;
+    margin-bottom: 25px;
+
+    li {
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+    }
+  }
+
+  .footer__links--plain {
+    display: inline-block;
+    font-size: $footer-links-font-size;
+    color: #000000;
+
+    li {
+      display: inline-block;
+
+      &:first-child::after {
+        content: "|";
+        padding: 0 6px 0 6px;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+// ------------------------------------- //
+// ------------ BREAKPOINTS ------------ //
+// ------------------------------------- //
+@media screen and (min-width: 560px) {
+  .hero {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  .logo-image {
+    margin-top: 64px;
+    margin-left: 36px;
+    margin-bottom: 52px;
+    width: 317px;
+    height: auto;
+  }
+
+  .hero {
+    .hero__overlay {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      opacity: 80%;
+    }
+  }
+
+  h2,
+  h1 {
+    font-size: 1.875rem;
+
+    &.investment__heading {
+      margin-top: 64px;
+    }
+
+    &.advantage__heading {
+      margin-top: 44px;
+    }
+
+    &.investment__heading::after {
+      margin: 18px auto 26px auto;
+    }
+
+    &.advantage__heading::after {
+      margin: 20px auto 40px auto;
+    }
+  }
+
+  .advantage__grid {
+    margin-bottom: 62px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .advantage__grid-item {
+    border: none;
+    padding-bottom: 0;
+    margin-top: 0;
+
+    width: calc(100% / 2 - 41px);
+
+    &:nth-child(1) {
+      padding-right: 40px;
+      border-right: solid 0.4px $secondary-gray;
+      margin-bottom: 114px;
+    }
+
+    &:nth-child(2) {
+      padding-left: 40px;
+      margin-bottom: 114px;
+    }
+
+    &:nth-child(3) {
+      padding-right: 40px;
+      border-right: solid 0.4px $secondary-gray;
+    }
+
+    &:nth-child(4) {
+      padding-left: 40px;
+    }
+  }
+
+  .advantage__loans-box {
+    margin-bottom: 60px;
+
+    p {
+      padding: 30px 94px 37px 64px;
+      margin-top: 0;
+    }
+  }
+
+  .quotes {
+    margin: auto 70px 70px 70px;
+  }
+
+  footer {
+    padding-top: 37px;
+    padding-bottom: 41px;
+
+    .container {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 942px) {
+  .quotes {
+    margin-bottom: 136px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+
+    max-width: 1060px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 110px;
+    margin-right: 110px;
+
+    .quotes__item {
+      align-items: center;
+      margin-bottom: 0;
+
+      &:nth-child(2) .quotes__blockquote-container {
+        width: 50%;
+      }
+    }
+
+    .quotes__blockquote-container,
+    p {
+      width: 180px;
+      margin: auto;
+    }
+
+    blockquote {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .quotes {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
